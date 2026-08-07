@@ -1,15 +1,15 @@
 # 1-rag
 
-Sistema RAG sencillo usando PDFs, embeddings locales (Hugging Face) y una base vectorial Chroma.
+Simple RAG system using PDFs, local embeddings (Hugging Face), and a Chroma vector store.
 
-El flujo sigue cuatro etapas:
+The flow follows four stages:
 
-1. Ingestion: lee el texto de un PDF (`PyPDFLoader`).
-2. Chunking: divide el texto en fragmentos de 1500 caracteres con overlap de 300.
-3. Indexacion: convierte cada chunk en embeddings y los guarda en ChromaDB.
-4. Recuperacion + generacion: busca contexto similar y lo inyecta en el prompt de un LLM servido por Hugging Face.
+1. Ingestion: reads the text from a PDF (`PyPDFLoader`).
+2. Chunking: splits the text into 1500-character fragments with 300-character overlap.
+3. Indexing: converts each chunk into embeddings and stores them in ChromaDB.
+4. Retrieval + generation: searches for similar context and injects it into the prompt of an LLM served by Hugging Face.
 
-## Instalacion
+## Installation
 
 ```bash
 python3 -m venv .venv
@@ -18,23 +18,23 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Completa `.env` con tus variables:
+Fill in `.env` with your variables:
 
-- `PDF_PATH`: ruta por defecto del PDF a indexar.
-- `CHROMA_DIR`: carpeta donde se persiste la base vectorial.
-- `EMBEDDING_MODEL`: modelo de `sentence-transformers` usado para los embeddings.
-- `HUGGINGFACEHUB_API_TOKEN` y `HF_MODEL_ID`: credencial y modelo de Hugging Face usados para generar las respuestas.
-- `LANGSMITH_*` (opcional): tracing de las llamadas al LLM.
+- `PDF_PATH`: default path of the PDF to index.
+- `CHROMA_DIR`: folder where the vector store is persisted.
+- `EMBEDDING_MODEL`: `sentence-transformers` model used for the embeddings.
+- `HUGGINGFACEHUB_API_TOKEN` and `HF_MODEL_ID`: Hugging Face credential and model used to generate the answers.
+- `LANGSMITH_*` (optional): tracing for the LLM calls.
 
-## Uso
+## Usage
 
-Coloca un PDF en `data/` (o apunta `PDF_PATH` a su ubicacion) y ejecuta:
+Place a PDF in `data/` (or point `PDF_PATH` to its location) and run:
 
 ```bash
 python main.py data/mi-documento.pdf
 ```
 
-Si no pasas un path, usa el `PDF_PATH` definido en `.env`. Al arrancar, indexa el PDF en Chroma y despues abre un prompt interactivo para hacer preguntas:
+If you don't pass a path, it uses the `PDF_PATH` defined in `.env`. On startup it indexes the PDF into Chroma and then opens an interactive prompt for asking questions:
 
 ```
 Sistema RAG listo. Escribi tu pregunta (o 'salir' para terminar).

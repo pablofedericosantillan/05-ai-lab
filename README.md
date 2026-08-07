@@ -1,8 +1,8 @@
 # ai-lab
 
-Laboratorio de IA con ejemplos practicos.
+AI lab with practical examples.
 
-## Ejemplos
+## Examples
 
-- `1-rag`: pipeline RAG simple con PDFs, embeddings y ChromaDB.
+- `1-rag`: simple RAG pipeline with PDFs, embeddings, and ChromaDB.
 
