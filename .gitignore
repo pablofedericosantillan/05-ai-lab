@@ -8,3 +8,5 @@ __pycache__/
 1-rag/chroma_db/
 1-rag/data/*.pdf
 !1-rag/data/.gitkeep
+
+1-rag/.venv/
