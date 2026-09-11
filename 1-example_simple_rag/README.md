@@ -11,16 +11,11 @@ The flow follows four stages:
 
 ## Installation
 
-Run everything from this folder (`1-example_simple_rag/`):
-
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Fill in `.env`:
+`run.sh` takes care of the venv and the dependencies. Fill in `.env`:
 
 - `PDF_PATH`: default PDF to index (default: `../data/source.pdf`).
 - `CHROMA_DIR`: folder where the vector store is persisted.
@@ -31,9 +26,12 @@ Fill in `.env`:
 ## Usage
 
 ```bash
-python main.py                      # uses PDF_PATH from .env
-python main.py ../data/source.pdf   # or pass a PDF explicitly
+./run.sh                      # uses PDF_PATH from .env
+./run.sh ../data/source.pdf   # or pass a PDF explicitly
 ```
+
+`run.sh` creates the venv on first run, installs the dependencies, and always
+runs from this folder, so you don't have to activate anything by hand.
 
 The first run downloads the embedding model and indexes the PDF (it rebuilds
 `CHROMA_DIR` from scratch every time), then opens an interactive prompt:
@@ -41,7 +39,7 @@ The first run downloads the embedding model and indexes the PDF (it rebuilds
 ```
 RAG system ready. Ask your question in Spanish (or 'exit' to quit).
 
-Question: Que explica el documento sobre la etapa de ingestion?
+Question: Que explica el documento?
 
 Answer: ...
 
