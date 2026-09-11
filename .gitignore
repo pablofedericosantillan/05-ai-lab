@@ -5,8 +5,8 @@ __pycache__/
 .DS_Store
 
 # Local RAG artifacts
-1-rag/chroma_db/
-1-rag/data/*.pdf
-!1-rag/data/.gitkeep
+*/chroma_db/
+*/data/*.pdf
+*/data/.gitkeep
 
-1-rag/.venv/
+*/.venv*
