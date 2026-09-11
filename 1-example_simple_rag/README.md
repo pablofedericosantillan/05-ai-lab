@@ -11,6 +11,8 @@ The flow follows four stages:
 
 ## Installation
 
+Run everything from this folder (`1-example_simple_rag/`):
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
@@ -18,9 +20,9 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Fill in `.env` with your variables:
+Fill in `.env`:
 
-- `PDF_PATH`: default path of the PDF to index.
+- `PDF_PATH`: default PDF to index (default: `../data/source.pdf`).
 - `CHROMA_DIR`: folder where the vector store is persisted.
 - `EMBEDDING_MODEL`: `sentence-transformers` model used for the embeddings.
 - `HUGGINGFACEHUB_API_TOKEN` and `HF_MODEL_ID`: Hugging Face credential and model used to generate the answers.
@@ -28,20 +30,20 @@ Fill in `.env` with your variables:
 
 ## Usage
 
-Place a PDF in `data/` (or point `PDF_PATH` to its location) and run:
-
 ```bash
-python main.py data/mi-documento.pdf
+python main.py                      # uses PDF_PATH from .env
+python main.py ../data/source.pdf   # or pass a PDF explicitly
 ```
 
-If you don't pass a path, it uses the `PDF_PATH` defined in `.env`. On startup it indexes the PDF into Chroma and then opens an interactive prompt for asking questions:
+The first run downloads the embedding model and indexes the PDF (it rebuilds
+`CHROMA_DIR` from scratch every time), then opens an interactive prompt:
 
 ```
-Sistema RAG listo. Escribi tu pregunta (o 'salir' para terminar).
+RAG system ready. Ask your question in Spanish (or 'exit' to quit).
 
-Pregunta: Que explica el documento sobre la etapa de ingestion?
+Question: Que explica el documento sobre la etapa de ingestion?
 
-Respuesta: ...
+Answer: ...
 
-Pregunta: salir
+Question: exit
 ```
